@@ -1,0 +1,154 @@
+unit Model.Pedidos;
+
+interface
+
+Uses Firedac.Comp.Client, Data.DB, System.SysUtils, Model.DAO, system.Generics.Collections,
+     Model.ItensPedido;
+
+Type
+   TPedidos = class
+     private
+        FIDPedido: Integer;
+        FDataEmissao: TDate;
+        FIDCliente: Integer;
+        FValorTotal: Double;
+        FNomeCliente: String;
+        FListaItens: TObjectList<TItensPedido>;
+     public
+        constructor Create;
+        destructor Destroy; override;
+        procedure AdicionarItem(IDProduto : Integer; Descricao: String; Quantidade, ValorUnitario: Currency);
+
+        property IDPedido : integer read FIDPedido write FIDPedido;
+        property DataEmissao : TDate read FDataEmissao write FDataEmissao;
+        property IDCliente : integer read FIDCliente write FIDCliente;
+        property ValorTotal : Double read FValorTotal write FValorTotal;
+        property NomeCliente : string read FNomeCliente write FNomeCliente;
+        property ListaItens : TObjectList<TItensPedido> read FListaItens write FListaItens;
+
+        function Lista(AOrderBy: String; out Error: String) : TFDQuery;
+        function Inserir(out error: string): Boolean;
+        function Deletar(out error: string): Boolean;
+   end;
+
+implementation
+
+{ TPedidos }
+
+constructor TPedidos.Create;
+begin
+   Model.DAO.connected;
+end;
+
+function TPedidos.Deletar(out error: string): Boolean;
+var qry : TFDQuery;
+begin
+     qry := TFDQuery.Create(Nil);
+     qry.Connection  := Model.Dao.FConn;
+     qry.Transaction := Model.DAO.Transaction;
+
+     FTran.StartTransaction;
+     qry.SQL.Clear;
+     Try
+       qry.SQL.Add('delete from pedidos where idPedido = :idPedido');
+       qry.ParamByName('idPedido').AsInteger  := IDPedido;
+       qry.ExecSQL;
+
+       Result := True;
+       FTran.Commit;
+     except on e: exception do
+     begin
+        FTran.Rollback;
+        error  := e.Message;
+        Result := False;
+     end;
+     End;
+end;
+
+destructor TPedidos.Destroy;
+begin
+   Model.DAO.Disconnected;
+  inherited;
+end;
+
+procedure AdicionarItem(IDProduto : Integer; Descricao: String; Quantidade, ValorUnitario: Currency);
+var ID: Integer;
+Begin
+   FLista
+End;
+
+function TPedidos.Lista(AOrderBy: String; out Error: String): TFDQuery;
+var qry : TFDQuery;
+begin
+   Try
+     qry := TFDQuery.Create(Nil);
+     qry.Connection := Model.DAO.FConn;
+
+     With qry Do
+     Begin
+        Active := False;
+        SQL.Clear;
+        SQL.Add('select p.*, c.nome from pedidos p inner join clientes c on(p.idcliente = c.idcliente) ');
+
+        if (IDPedido > 0) Or (IDCliente > 0) Then
+        Begin
+           SQL.Add(' where ');
+           if IDPedido > 0 then
+              SQL.Add(' p.idPedido = ' + IntToStr(IDPedido));
+
+           if (IDPedido > 0) and (IDCliente > 0) then
+               SQL.Add(' and ');
+
+           if IDCliente > 0 then
+              SQL.Add(' p.idCliente = ' + IntToStr(IDCliente));
+        End;
+
+        if Trim(AOrderBy) <> '' then
+           SQL.Add(' order by p.' + AOrderBy);
+
+        Active := True;
+     End;
+
+     error  := EmptyStr;
+     Result := qry;
+   except on e: exception do
+     Begin
+        error  := 'Erro ao listar pedidos: ' + e.Message;
+        Result := Nil;
+     End;
+   End;
+
+end;
+
+function TPedidos.Inserir(out error: string): Boolean;
+var qry : TFDQuery;
+begin
+     qry := TFDQuery.Create(Nil);
+     qry.Connection  := Model.Dao.FConn;
+     qry.Transaction := Model.DAO.Transaction;
+
+     FTran.StartTransaction;
+     qry.SQL.Clear;
+     Try
+       qry.SQL.Add('insert into pedidos (idPedido, idCliente, dataEmissao, valorTotal)');
+       qry.SQL.Add('values (:idPedido, :idCliente, :dataEmissao, :valorTotal)');
+
+
+       qry.ParamByName('idPedido').AsInteger  := IDPedido;
+       qry.ParamByName('idCliente').AsInteger := IDCliente;
+       qry.ParamByName('dataEmissao').AsDate  := DataEmissao;
+       qry.ParamByName('valorTotal').AsFloat  := ValorTotal;
+       qry.ExecSQL;
+
+       Result := True;
+       FTran.Commit;
+     except on e: exception do
+     begin
+        FTran.Rollback;
+        error  := e.Message;
+        Result := False;
+     end;
+     End;
+end;
+
+end.

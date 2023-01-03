@@ -34,7 +34,7 @@ implementation
 
 constructor TItensPedido.Create;
 begin
-   FIDItem := 0;
+
 end;
 
 function TItensPedido.DeletarItens(out error: string): Boolean;
@@ -80,7 +80,7 @@ begin
      Begin
         Active := False;
         SQL.Clear;
-        SQL.Add('select ip.*, p.descricao from itenspedidos ip inner join produtos p on (ip.idproduto = p.idproduto)');
+        SQL.Add('select ip.*, p.descricao from itenspedidos ip inner join produtos p (ip.idproduto = p.idproduto)');
 
         if (IDPedido > 0) Or (IDProduto > 0) Then
         Begin
@@ -96,7 +96,7 @@ begin
         End;
 
         if Trim(AOrderBy) <> '' then
-           SQL.Add(' order by ip.' + AOrderBy);
+           SQL.Add(' order by p.' + AOrderBy);
 
         Active := True;
      End;

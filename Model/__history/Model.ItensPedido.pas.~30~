@@ -34,7 +34,7 @@ implementation
 
 constructor TItensPedido.Create;
 begin
-   FIDItem := 0;
+
 end;
 
 function TItensPedido.DeletarItens(out error: string): Boolean;

@@ -29,7 +29,7 @@ begin
    FConn.Params.DriverID := 'MYSQL';
    FConn.Params.Database := 'banco_teste';
    FConn.Params.UserName := 'Alisson';
-   FConn.Params.Password := 'DeuxSoftware@2023';
+   FConn.Params.Password := 'Dmasters@10';
    FConn.Params.Add('Port=3306');
    FConn.Params.Add('Server=192.168.0.99');
    FConn.Connected := True;

@@ -1,0 +1,8 @@
+unit Model.ListaItensPedido;
+
+interface
+Uses Firedac.Comp.Client, Data.DB, System.SysUtils, Model.DAO, Model.ItensPedido;
+
+implementation
+
+end.

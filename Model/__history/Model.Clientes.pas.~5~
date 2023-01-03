@@ -1,0 +1,68 @@
+unit Model.Clientes;
+
+interface
+
+Uses Firedac.Comp.Client, Data.DB, System.SysUtils, Model.DAO;
+
+type
+    TClientes = class
+      private
+        FID: Integer;
+        FNome: String;
+        FCidade: String;
+        FUF: String;
+      public
+        constructor Create;
+        destructor Destroy; override;
+        property ID: integer read FID write FID;
+        property Nome: string read FNome write FNome;
+        property Cidade: string read FCidade write FCidade;
+        property UF: string read FUF write FUF;
+
+        function Lista(AOrderBy: String; out Error: String) : TFDQuery;
+    end;
+
+implementation
+
+{ TClientes }
+
+constructor TClientes.Create;
+begin
+   Model.DAO.connected;
+end;
+
+destructor TClientes.Destroy;
+begin
+  Model.DAO.Disconnected;
+  inherited;
+end;
+
+function TClientes.Lista(AOrderBy: String; out Error: String): TFDQuery;
+var qry : TFDQuery;
+begin
+   Try
+     qry := TFDQuery.Create(Nil);
+     qry.Connection := Model.DAO.FConn;
+
+     With qry Do
+     Begin
+        Active := False;
+        SQL.Clear;
+        SQL.Add('select * from clientes');
+        if Trim(AOrderBy) <> '' then
+           SQL.Add(' order by ' + AOrderBy);
+
+        Active := True;
+     End;
+
+     error  := EmptyStr;
+     Result := qry;
+   except on e: exception do
+     Begin
+        error  := 'Erro ao listar clientes: ' + e.Message;
+        Result := Nil;
+     End;
+   End;
+end;
+
+end.

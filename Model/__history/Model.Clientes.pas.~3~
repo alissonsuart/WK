@@ -1,0 +1,39 @@
+unit Model.Clientes;
+
+interface
+
+Uses Firedac.Comp.Client, Data.DB, System.SysUtils, Model.DAO;
+
+type
+    TClientes = class
+      private
+        FID: Integer;
+        FNome: String;
+        FCidade: String;
+        FUF: String;
+      public
+        constructor Create;
+        destructor Destroy; override;
+        property ID: integer read FID write FID;
+        property Nome: string read FNome write FNome;
+        property Cidade: string read FCidade write FCidade;
+        property UF: string read FUF write FUF;
+
+    end;
+
+implementation
+
+{ TClientes }
+
+constructor TClientes.Create;
+begin
+
+end;
+
+destructor TClientes.Destroy;
+begin
+
+  inherited;
+end;
+
+end.
