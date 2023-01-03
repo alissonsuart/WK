@@ -1,0 +1,172 @@
+unit Controller.Pedidos;
+
+interface
+uses System.SysUtils, FireDac.Comp.Client, Model.Pedidos;
+
+function ListaTodosCodigo: TFDQuery;
+function ListaPorID(AID: Integer): TFDQuery;
+function ListaPorCliente(ACliente: integer): TFDQuery;
+function ExisteIDPedido(AID: Integer): Boolean;
+
+function InserirPedido(APedido : TPedidos) : boolean;
+function DeletarPedido(APedido: Integer): boolean;
+
+implementation
+
+function ListaTodosCodigo: TFDQuery;
+var Lista: TPedidos;
+    qry: TFDQuery;
+    erro: String;
+Begin
+   Try
+     Lista := TPedidos.Create;
+   except
+      raise Exception.Create('erro ao listar');
+   End;
+
+   if not assigned(qry) then
+      qry := TFDQuery.Create(Nil);
+
+   qry.SQL.Clear;
+   Try
+     qry := Lista.Lista('idPedido DESC',erro);
+
+     if Trim(erro) <> '' then
+        raise Exception.Create(erro);
+
+   Finally
+//     Lista.Free;
+     Result := qry;
+   End;
+End;
+
+function ListaPorID(AID: Integer): TFDQuery;
+var Lista: TPedidos;
+    qry: TFDQuery;
+    erro: string;
+begin
+   Try
+     Lista := TPedidos.Create;
+     Lista.IDPedido := AID;
+   except
+      raise Exception.Create('erro ao listar');
+   End;
+
+   if not assigned(qry) then
+      qry := TFDQuery.Create(Nil);
+
+   qry.SQL.Clear;
+   Try
+     qry := Lista.Lista('',erro);
+
+     if Trim(erro) <> '' then
+        raise Exception.Create(erro);
+
+   Finally
+     Result := qry;
+//     Lista.Free;
+   End;
+end;
+
+function ListaPorCliente(ACliente: integer): TFDQuery;
+var Lista: TPedidos;
+    qry: TFDQuery;
+    erro: string;
+begin
+   Try
+     Lista := TPedidos.Create;
+     Lista.IDCliente := ACliente;
+   except
+      raise Exception.Create('erro ao listar');
+   End;
+
+   if not assigned(qry) then
+      qry := TFDQuery.Create(Nil);
+
+   qry.SQL.Clear;
+   Try
+     qry := Lista.Lista('',erro);
+
+     if Trim(erro) <> '' then
+        raise Exception.Create(erro);
+
+   Finally
+     Result := qry;
+//     Lista.Free;
+   End;
+end;
+
+function ExisteIDPedido(AID: Integer): Boolean;
+var Lista: TPedidos;
+    qry: TFDQuery;
+    erro: string;
+begin
+   Try
+     Lista := TPedidos.Create;
+     Lista.IDPedido := AID;
+   except
+      raise Exception.Create('erro ao listar');
+   End;
+
+   Try
+       Try
+          if not assigned(qry) then
+             qry := TFDQuery.Create(Nil);
+          qry.SQL.Clear;
+          qry        := Lista.Lista('',erro);
+          qry.Active := True;
+
+          if qry.IsEmpty then
+               Result := False
+          else Result := True;
+       Except
+          Result := False
+       End;
+   Finally
+     qry.Free;
+   End;
+End;
+
+function InserirPedido(APedido : TPedidos) : boolean;
+var Ped : TPedidos;
+    error: string;
+begin
+   Try
+     Try
+       Ped := TPedidos.Create;
+       Ped := APedido;
+       Ped.Inserir(error);
+       if Trim(error) <> '' then
+          raise Exception.Create(error);
+
+       result := True;
+     Except
+        Result := False;
+     End;
+   Finally
+     if Assigned(Ped) then
+        Ped.Free;
+   End;
+end;
+
+function DeletarPedido(APedido: Integer): boolean;
+var Ped : TPedidos;
+    error: string;
+begin
+   Try
+     Try
+       Ped := TPedidos.Create;
+       Ped.IDPedido := APedido;
+       Ped.Deletar(error);
+       if Trim(error) <> '' then
+          raise Exception.Create(error);
+
+       result := True;
+     Except
+        Result := False;
+     End;
+   Finally
+     Ped.Free;
+   End;
+end;
+end.

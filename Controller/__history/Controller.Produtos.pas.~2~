@@ -1,0 +1,13 @@
+unit Controller.Produtos;
+
+interface
+uses System.SysUtils, FireDac.Comp.Client, Model.Clientes;
+
+function ListaTodosCodigo: TFDQuery;
+function ListaPorID(AID: Integer): TFDQuery;
+
+implementation
+
+
+
+end.

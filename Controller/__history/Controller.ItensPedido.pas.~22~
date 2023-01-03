@@ -1,0 +1,98 @@
+unit Controller.ItensPedido;
+
+interface
+uses System.SysUtils, FireDac.Comp.Client, Model.ItensPedido, Model.ListaItensPedido;
+
+function ListaTodosCodigo(AIDPedido: integer): TFDQuery;
+function InserirPedido(AListaItens : TListaItens) : boolean;
+function DeletaPedido(AIDPedido: integer): Boolean;
+
+implementation
+
+function ListaTodosCodigo(AIDPedido: integer): TFDQuery;
+var Lista: TItensPedido;
+    qry: TFDQuery;
+    erro: String;
+Begin
+   if AIDPedido = 0 then
+      raise Exception.Create('Informe um pedido válido');
+
+   Try
+     Lista := TItensPedido.Create;
+   except
+      raise Exception.Create('erro ao listar');
+   End;
+
+   if not assigned(qry) then
+      qry := TFDQuery.Create(Nil);
+
+   qry.SQL.Clear;
+   Try
+     qry := Lista.Lista('idItem',erro);
+
+     if Trim(erro) <> '' then
+        raise Exception.Create(erro);
+
+   Finally
+     Lista.Free;
+     Result := qry;
+//     Qry.Free;
+   End;
+End;
+
+function InserirPedido(AListaItens : TListaItens) : boolean;
+var error: string;
+    Itens : TItensPedido;
+    I : Integer;
+begin
+   Try
+     Try
+       Itens := TItensPedido.Create;
+       for I := 0 to AListaItens.Count -1 do
+       Begin
+          Itens.IDItem           := AListaItens.ItensPedido(i).IDItem;
+          Itens.IDPedido         := AListaItens.ItensPedido(i).IDPedido;
+          Itens.IDProduto        := AListaItens.ItensPedido(i).IDProduto;
+          Itens.DescricaoProduto := AListaItens.ItensPedido(i).DescricaoProduto;
+          Itens.Quantidade       := AListaItens.ItensPedido(i).Quantidade;
+          Itens.ValorUnitario    := AListaItens.ItensPedido(i).ValorUnitario;
+          Itens.inserirItens(error);
+       End;
+
+       if Trim(error) <> '' then
+          raise Exception.Create(error);
+
+       result := True;
+     Except
+        Result := False;
+     End;
+   Finally
+     Itens.Free;
+   End;
+end;
+
+function DeletaPedido(AIDPedido: integer): Boolean;
+var IPed: TItensPedido;
+    error: String;
+begin
+   try
+       Try
+         if AIDPedido = 0 then
+            raise Exception.Create('Informe um Pedido para excluir');
+
+         IPed := TItensPedido.Create;
+         IPed.IDPedido := AIDPedido;
+         IPed.DeletarItens(error);
+           if Trim(error) <> '' then
+              raise Exception.Create(error);
+
+         result := True;
+       except
+          result := false;
+       End;
+   finally
+     IPed.Free;
+   end;
+end;
+
+end.

@@ -19,8 +19,6 @@ Begin
       raise Exception.Create('Informe um pedido válido');
    Try
      Lista := TItensPedido.Create;
-     if AIDPedido > 0 then
-        Lista.IDPedido := AIDPedido;
    except
       raise Exception.Create('erro ao listar');
    End;

@@ -2,10 +2,10 @@ unit Controller.ItensPedido;
 
 interface
 
-uses System.SysUtils, FireDac.Comp.Client, Model.ItensPedido;
+uses System.SysUtils, FireDac.Comp.Client, Model.ItensPedido, Model.ListaItensPedido;
 
 function ListaTodosCodigo(AIDPedido: integer): TFDQuery;
-function InserirPedido(AItens: TItensPedido) : boolean;
+function InserirPedido : boolean;
 function DeletaPedido(AIDPedido: integer): Boolean;
 
 implementation
@@ -19,8 +19,6 @@ Begin
       raise Exception.Create('Informe um pedido válido');
    Try
      Lista := TItensPedido.Create;
-     if AIDPedido > 0 then
-        Lista.IDPedido := AIDPedido;
    except
       raise Exception.Create('erro ao listar');
    End;
@@ -36,7 +34,7 @@ Begin
    End;
 End;
 
-function InserirPedido(AItens: TItensPedido) : boolean;
+function InserirPedido : boolean;
 var error: string;
     Itens : TItensPedido;
     I : Integer;
@@ -44,7 +42,6 @@ begin
    Try
      Try
        Itens := TItensPedido.Create;
-       Itens := AItens;
        Itens.inserirItens(error);
 
        if Trim(error) <> '' then
@@ -54,7 +51,7 @@ begin
         Result := False;
      End;
    Finally
-//     Itens.Free;
+     Itens.Free;
    End;
 end;
 

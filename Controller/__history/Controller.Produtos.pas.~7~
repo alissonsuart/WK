@@ -1,0 +1,77 @@
+unit Controller.Produtos;
+
+interface
+uses System.SysUtils, FireDac.Comp.Client, Model.Produtos;
+
+function ListaTodosCodigo: TFDQuery;
+function ListaPorID(AID: Integer): TProdutos;
+
+implementation
+
+function ListaTodosCodigo: TFDQuery;
+var Lista: TProdutos;
+    qry: TFDQuery;
+    erro: String;
+Begin
+   Try
+     Lista := TProdutos.Create;
+   except
+      raise Exception.Create('erro ao listar');
+   End;
+
+   if not assigned(qry) then
+      qry := TFDQuery.Create(Nil);
+
+   qry.SQL.Clear;
+   Try
+     qry := Lista.Lista('idProduto',erro);
+
+     if Trim(erro) <> '' then
+        raise Exception.Create(erro);
+
+   Finally
+     Lista.Free;
+     Result := qry;
+     Qry.Free;
+   End;
+End;
+
+function ListaPorID(AID: Integer): TProdutos;
+var Lista: TProdutos;
+    qry: TFDQuery;
+    erro: string;
+begin
+   Try
+     if Assigned(Lista) then
+        Lista.Free;
+
+     Lista := TProdutos.Create;
+     Lista.ID := AID;
+   except
+      raise Exception.Create('erro ao listar');
+   End;
+
+   if not assigned(qry) then
+      qry := TFDQuery.Create(Nil);
+
+   qry.SQL.Clear;
+   Try
+     qry := Lista.Lista('',erro);
+
+     if Trim(erro) <> '' then
+        raise Exception.Create(erro);
+
+     With Lista Do
+     Begin
+        ID        := qry.FieldByName('IDProduto').AsInteger;
+        Descricao := qry.FieldByName('Descricao').AsString;
+        Preco     := qry.FieldByName('Preco').AsCurrency;
+     End;
+
+   Finally
+     Result := Lista;
+     Qry.Free;
+   End;
+end;
+
+end.

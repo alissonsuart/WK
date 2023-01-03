@@ -126,7 +126,6 @@ begin
      else Result := True;
 
      qry.Active := False;
-     qry.Free;
    End;
 
 End;

@@ -6,7 +6,6 @@ uses System.SysUtils, FireDac.Comp.Client, Model.Pedidos;
 function ListaTodosCodigo: TFDQuery;
 function ListaPorID(AID: Integer): TFDQuery;
 function ListaPorCliente(ACliente: integer): TFDQuery;
-function BuscaPedidoExiste(AID: Integer): boolean;
 
 function InserirPedido(APedido : TPedidos) : boolean;
 function DeletarPedido(APedido: Integer): boolean;
@@ -96,40 +95,6 @@ begin
      Qry.Free;
    End;
 end;
-
-function BuscaPedidoExiste(AID: Integer): boolean;
-var Lista: TPedidos;
-    qry: TFDQuery;
-    erro: string;
-begin
-   Try
-     Lista := TPedidos.Create;
-     Lista.IDPedido := AID;
-   except
-      raise Exception.Create('erro ao listar');
-   End;
-
-   if not assigned(qry) then
-      qry := TFDQuery.Create(Nil);
-
-   qry.SQL.Clear;
-   Try
-     qry        := Lista.Lista('',erro);
-     qry.Active := True;
-
-     if Trim(erro) <> '' then
-        raise Exception.Create(erro);
-
-   Finally
-     if qry.IsEmpty then
-          Result := False
-     else Result := True;
-
-     qry.Active := False;
-     qry.Free;
-   End;
-
-End;
 
 function InserirPedido(APedido : TPedidos) : boolean;
 var Ped : TPedidos;

@@ -2,10 +2,10 @@ unit Controller.ItensPedido;
 
 interface
 
-uses System.SysUtils, FireDac.Comp.Client, Model.ItensPedido;
+uses System.SysUtils, FireDac.Comp.Client, Model.ItensPedido, Model.ListaItensPedido;
 
 function ListaTodosCodigo(AIDPedido: integer): TFDQuery;
-function InserirPedido(AItens: TItensPedido) : boolean;
+function InserirPedido(AListaItens : TListaItens) : boolean;
 function DeletaPedido(AIDPedido: integer): Boolean;
 
 implementation
@@ -19,8 +19,6 @@ Begin
       raise Exception.Create('Informe um pedido válido');
    Try
      Lista := TItensPedido.Create;
-     if AIDPedido > 0 then
-        Lista.IDPedido := AIDPedido;
    except
       raise Exception.Create('erro ao listar');
    End;
@@ -36,7 +34,7 @@ Begin
    End;
 End;
 
-function InserirPedido(AItens: TItensPedido) : boolean;
+function InserirPedido(AListaItens : TListaItens) : boolean;
 var error: string;
     Itens : TItensPedido;
     I : Integer;
@@ -44,9 +42,16 @@ begin
    Try
      Try
        Itens := TItensPedido.Create;
-       Itens := AItens;
-       Itens.inserirItens(error);
-
+       for I := 0 to AListaItens.Count -1 do
+       Begin
+          Itens.IDItem           := AListaItens.ItensPedido(i).IDItem;
+          Itens.IDPedido         := AListaItens.ItensPedido(i).IDPedido;
+          Itens.IDProduto        := AListaItens.ItensPedido(i).IDProduto;
+          Itens.DescricaoProduto := AListaItens.ItensPedido(i).DescricaoProduto;
+          Itens.Quantidade       := AListaItens.ItensPedido(i).Quantidade;
+          Itens.ValorUnitario    := AListaItens.ItensPedido(i).ValorUnitario;
+          Itens.inserirItens(error);
+       End;
        if Trim(error) <> '' then
           raise Exception.Create(error);
        result := True;
@@ -54,7 +59,7 @@ begin
         Result := False;
      End;
    Finally
-//     Itens.Free;
+     Itens.Free;
    End;
 end;
 
