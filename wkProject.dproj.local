@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2022/11/10 15:30:30.000.940,=C:\Users\chico\OneDrive\Documentos\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2022/11/10 15:51:46.000.088,=C:\Users\chico\OneDrive\Documentos\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2022/12/12 17:31:19.000.015,=C:\Users\chico\OneDrive\Documentos\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2022/12/12 17:31:54.000.336,C:\Users\chico\OneDrive\Documentos\Embarcadero\Studio\Projects\Unit1.pas=C:\Sistema\Terceiros\WK\View\uPrincipal.pas</Transaction>
+    <Transaction>2022/12/12 17:31:54.000.336,C:\Users\chico\OneDrive\Documentos\Embarcadero\Studio\Projects\Unit1.dfm=C:\Sistema\Terceiros\WK\View\uPrincipal.dfm</Transaction>
+    <Transaction>2022/12/12 17:32:05.000.732,C:\Users\chico\OneDrive\Documentos\Embarcadero\Studio\Projects\Project1.dproj=C:\Sistema\Terceiros\WK\wkProject.dproj</Transaction>
+    <Transaction>2022/12/12 17:34:04.000.809,=C:\Sistema\Terceiros\WK\Unit1.pas</Transaction>
+    <Transaction>2022/12/12 17:34:29.000.634,C:\Sistema\Terceiros\WK\Unit1.pas=C:\Sistema\Terceiros\WK\Model\Model.DAO.pas</Transaction>
+    <Transaction>2022/12/12 17:34:40.000.763,=C:\Sistema\Terceiros\WK\Unit1.pas</Transaction>
+    <Transaction>2022/12/12 17:34:54.000.518,C:\Sistema\Terceiros\WK\Unit1.pas=C:\Sistema\Terceiros\WK\Model\Model.Clientes.pas</Transaction>
+    <Transaction>2022/12/12 17:35:18.000.382,=C:\Sistema\Terceiros\WK\Unit1.pas</Transaction>
+    <Transaction>2022/12/12 17:35:27.000.234,C:\Sistema\Terceiros\WK\Unit1.pas=C:\Sistema\Terceiros\WK\Controller\Controller.Clientes.pas</Transaction>
+    <Transaction>2022/12/12 17:35:44.000.096,=C:\Sistema\Terceiros\WK\Unit1.pas</Transaction>
+    <Transaction>2022/12/12 17:35:53.000.506,=C:\Sistema\Terceiros\WK\Unit1.pas</Transaction>
+    <Transaction>2022/12/12 22:36:39.000.577,=C:\Sistema\Terceiros\WK\Unit1.pas</Transaction>
+    <Transaction>2022/12/12 22:36:52.000.089,C:\Sistema\Terceiros\WK\Model\Model.Produtos.pas=C:\Sistema\Terceiros\WK\Unit1.pas</Transaction>
+    <Transaction>2022/12/12 22:36:57.000.642,=C:\Sistema\Terceiros\WK\Unit1.pas</Transaction>
+    <Transaction>2022/12/12 22:37:07.000.694,C:\Sistema\Terceiros\WK\Controller\Controller.Produtos.pas=C:\Sistema\Terceiros\WK\Unit1.pas</Transaction>
+    <Transaction>2022/12/13 09:27:50.000.510,=C:\Sistema\Terceiros\WK\Unit1.pas</Transaction>
+    <Transaction>2022/12/13 09:28:00.000.990,C:\Sistema\Terceiros\WK\Unit1.pas=C:\Sistema\Terceiros\WK\Model\Model.Pedidos.pas</Transaction>
+    <Transaction>2022/12/13 09:28:06.000.046,=C:\Sistema\Terceiros\WK\Unit1.pas</Transaction>
+    <Transaction>2022/12/13 09:28:14.000.976,C:\Sistema\Terceiros\WK\Unit1.pas=C:\Sistema\Terceiros\WK\Controller\Controller.Pedidos.pas</Transaction>
+    <Transaction>2022/12/13 11:27:03.000.361,=C:\Sistema\Terceiros\WK\Unit1.pas</Transaction>
+    <Transaction>2022/12/13 11:27:17.000.085,C:\Sistema\Terceiros\WK\Model\Model.ItensPedido.pas=C:\Sistema\Terceiros\WK\Unit1.pas</Transaction>
+    <Transaction>2022/12/13 11:27:23.000.761,=C:\Sistema\Terceiros\WK\Unit1.pas</Transaction>
+    <Transaction>2022/12/13 11:27:35.000.727,C:\Sistema\Terceiros\WK\Controller\Controller.ItensPedido.pas=C:\Sistema\Terceiros\WK\Unit1.pas</Transaction>
+    <Transaction>2022/12/13 16:58:18.000.172,=C:\Sistema\Terceiros\WK\Unit1.pas</Transaction>
+    <Transaction>2022/12/13 16:58:33.000.298,C:\Sistema\Terceiros\WK\Unit1.pas=C:\Sistema\Terceiros\WK\Model\Model.ListaItensPedido.pas</Transaction>
+  </Transactions>
+</BorlandProject>
