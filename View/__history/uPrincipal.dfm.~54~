@@ -189,7 +189,6 @@ object frm_Principal: Tfrm_Principal
         Width = 121
         Height = 24
         TabOrder = 0
-        OnExit = Edit5Exit
       end
       object Edit6: TEdit
         Left = 168

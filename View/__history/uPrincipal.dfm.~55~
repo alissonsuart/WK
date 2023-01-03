@@ -82,7 +82,6 @@ object frm_Principal: Tfrm_Principal
         Align = alLeft
         Caption = 'Novo Pedido'
         TabOrder = 4
-        OnClick = BitBtn2Click
         ExplicitLeft = 9
         ExplicitTop = 2
       end
@@ -189,7 +188,6 @@ object frm_Principal: Tfrm_Principal
         Width = 121
         Height = 24
         TabOrder = 0
-        OnExit = Edit5Exit
       end
       object Edit6: TEdit
         Left = 168

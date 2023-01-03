@@ -75,7 +75,6 @@ type
     procedure BitBtn5Click(Sender: TObject);
     procedure BitBtn7Click(Sender: TObject);
     procedure BitBtn2Click(Sender: TObject);
-    procedure Edit5Exit(Sender: TObject);
   private
     { Private declarations }
     bAlterando : boolean;
@@ -218,7 +217,7 @@ begin
 
         if not qry.IsEmpty then
         Begin
-           Edit4.Text := FormatFloat('##0.00',qry.FieldByName('ValorTotal').AsFloat);
+           Edit4.Text := qry.FieldByName('ValorTotal').AsString;
            Edit5.Text := qry.FieldByName('IDPedido').AsString;
            Edit6.Text := qry.FieldByName('DataEmissao').AsString;
            Edit7.Text := qry.FieldByName('idCliente').AsString;
@@ -298,6 +297,7 @@ begin
    case key of
       VK_DELETE : if Messagedlg('Excluir registro ?', mtConfirmation, [mbyes,mbno],0)= mrYes then
                   Begin
+                     ListaItensPed.Del(cdsItens.RecNo);
                      cdsItens.Delete;
                      totalizaPedido;
                   End;
@@ -324,18 +324,6 @@ begin
         Edit2.SetFocus;
         Produtos.Free;
       End;
-   End;
-end;
-
-procedure Tfrm_Principal.Edit5Exit(Sender: TObject);
-begin
-   if Trim(Edit5.Text) <> '' then
-   Begin
-      if Controller.Pedidos.BuscaPedidoExiste(StrToInt(Edit5.Text)) then
-      begin
-         Edit5.SetFocus;
-         raise Exception.Create('Este número de pedido já existe.');
-      end;
    End;
 end;
 

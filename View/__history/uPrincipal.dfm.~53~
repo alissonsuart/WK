@@ -42,7 +42,7 @@ object frm_Principal: Tfrm_Principal
         OnClick = BitBtn1Click
       end
       object BitBtn3: TBitBtn
-        Left = 121
+        Left = 1
         Top = 1
         Width = 120
         Height = 38
@@ -50,10 +50,9 @@ object frm_Principal: Tfrm_Principal
         Caption = 'Gravar Pedido'
         TabOrder = 1
         OnClick = BitBtn3Click
-        ExplicitLeft = 1
       end
       object BitBtn5: TBitBtn
-        Left = 241
+        Left = 121
         Top = 1
         Width = 120
         Height = 38
@@ -61,10 +60,9 @@ object frm_Principal: Tfrm_Principal
         Caption = 'Excluir Pedido'
         TabOrder = 2
         OnClick = BitBtn5Click
-        ExplicitLeft = 121
       end
       object BitBtn7: TBitBtn
-        Left = 361
+        Left = 241
         Top = 1
         Width = 132
         Height = 38
@@ -72,19 +70,6 @@ object frm_Principal: Tfrm_Principal
         Caption = 'Buscar Pedido'
         TabOrder = 3
         OnClick = BitBtn7Click
-        ExplicitLeft = 241
-      end
-      object BitBtn2: TBitBtn
-        Left = 1
-        Top = 1
-        Width = 120
-        Height = 38
-        Align = alLeft
-        Caption = 'Novo Pedido'
-        TabOrder = 4
-        OnClick = BitBtn2Click
-        ExplicitLeft = 9
-        ExplicitTop = 2
       end
     end
     object Panel2: TPanel
@@ -189,7 +174,6 @@ object frm_Principal: Tfrm_Principal
         Width = 121
         Height = 24
         TabOrder = 0
-        OnExit = Edit5Exit
       end
       object Edit6: TEdit
         Left = 168

@@ -304,8 +304,8 @@ object frm_Principal: Tfrm_Principal
   object cdsItens: TClientDataSet
     Aggregates = <>
     Params = <>
-    Left = 777
-    Top = 65
+    Left = 841
+    Top = 113
     object cdsItensidItem: TIntegerField
       FieldName = 'idItem'
     end

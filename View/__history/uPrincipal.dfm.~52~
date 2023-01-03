@@ -1,0 +1,316 @@
+object frm_Principal: Tfrm_Principal
+  Left = 0
+  Top = 0
+  Caption = 'Pedidos'
+  ClientHeight = 652
+  ClientWidth = 905
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -13
+  Font.Name = 'Verdana'
+  Font.Style = []
+  KeyPreview = True
+  OldCreateOrder = False
+  OnClose = FormClose
+  OnKeyPress = FormKeyPress
+  OnShow = FormShow
+  PixelsPerInch = 96
+  TextHeight = 16
+  object panelPrincipal: TPanel
+    Left = 0
+    Top = 0
+    Width = 905
+    Height = 652
+    Align = alClient
+    TabOrder = 0
+    object Panel1: TPanel
+      Left = 1
+      Top = 1
+      Width = 903
+      Height = 40
+      Align = alTop
+      TabOrder = 0
+      object BitBtn1: TBitBtn
+        Left = 765
+        Top = 1
+        Width = 137
+        Height = 38
+        Align = alRight
+        Caption = 'Test Connection'
+        TabOrder = 0
+        OnClick = BitBtn1Click
+      end
+      object BitBtn3: TBitBtn
+        Left = 1
+        Top = 1
+        Width = 120
+        Height = 38
+        Align = alLeft
+        Caption = 'Gravar Pedido'
+        TabOrder = 1
+        OnClick = BitBtn3Click
+      end
+      object BitBtn5: TBitBtn
+        Left = 121
+        Top = 1
+        Width = 120
+        Height = 38
+        Align = alLeft
+        Caption = 'Excluir Pedido'
+        TabOrder = 2
+        OnClick = BitBtn5Click
+      end
+      object BitBtn7: TBitBtn
+        Left = 241
+        Top = 1
+        Width = 132
+        Height = 38
+        Align = alLeft
+        Caption = 'Buscar Pedido'
+        TabOrder = 3
+        OnClick = BitBtn7Click
+      end
+    end
+    object Panel2: TPanel
+      Left = 1
+      Top = 41
+      Width = 903
+      Height = 192
+      Align = alTop
+      TabOrder = 1
+      object Label4: TLabel
+        Left = 16
+        Top = 16
+        Width = 65
+        Height = 16
+        Caption = 'Nr. Pedido'
+      end
+      object Label5: TLabel
+        Left = 168
+        Top = 16
+        Width = 88
+        Height = 16
+        Caption = 'Data Emiss'#227'o'
+      end
+      object Label6: TLabel
+        Left = 16
+        Top = 69
+        Width = 45
+        Height = 16
+        Caption = 'Cliente'
+      end
+      object GroupBox1: TGroupBox
+        Left = 1
+        Top = 128
+        Width = 901
+        Height = 63
+        Align = alBottom
+        Caption = 'Inserir Produtos'
+        TabOrder = 4
+        object Label1: TLabel
+          Left = 10
+          Top = 16
+          Width = 44
+          Height = 16
+          Caption = 'C'#243'digo'
+        end
+        object Label2: TLabel
+          Left = 480
+          Top = 16
+          Width = 75
+          Height = 16
+          Caption = 'Quantidade'
+        end
+        object Label3: TLabel
+          Left = 608
+          Top = 16
+          Width = 87
+          Height = 16
+          Caption = 'Valor Unit'#225'rio'
+        end
+        object Label8: TLabel
+          Left = 139
+          Top = 39
+          Width = 5
+          Height = 16
+        end
+        object Edit1: TEdit
+          Left = 10
+          Top = 34
+          Width = 121
+          Height = 24
+          TabOrder = 0
+          OnExit = Edit1Exit
+        end
+        object Edit2: TEdit
+          Left = 480
+          Top = 34
+          Width = 121
+          Height = 24
+          TabOrder = 1
+        end
+        object Edit3: TEdit
+          Left = 608
+          Top = 34
+          Width = 121
+          Height = 24
+          TabOrder = 2
+        end
+        object BitBtn6: TBitBtn
+          Left = 800
+          Top = 18
+          Width = 99
+          Height = 43
+          Align = alRight
+          Caption = 'Inserir'
+          TabOrder = 3
+          OnClick = BitBtn6Click
+        end
+      end
+      object Edit5: TEdit
+        Left = 16
+        Top = 32
+        Width = 121
+        Height = 24
+        TabOrder = 0
+      end
+      object Edit6: TEdit
+        Left = 168
+        Top = 32
+        Width = 121
+        Height = 24
+        TabOrder = 1
+        OnEnter = Edit6Enter
+      end
+      object Edit7: TEdit
+        Left = 16
+        Top = 85
+        Width = 121
+        Height = 24
+        TabOrder = 2
+        OnExit = Edit7Exit
+      end
+      object Edit8: TEdit
+        Left = 143
+        Top = 85
+        Width = 378
+        Height = 24
+        TabOrder = 3
+      end
+    end
+    object DBGrid1: TDBGrid
+      Left = 1
+      Top = 233
+      Width = 903
+      Height = 377
+      Align = alClient
+      DataSource = DataSource1
+      TabOrder = 2
+      TitleFont.Charset = DEFAULT_CHARSET
+      TitleFont.Color = clWindowText
+      TitleFont.Height = -13
+      TitleFont.Name = 'Verdana'
+      TitleFont.Style = []
+      OnEnter = DBGrid1Enter
+      OnExit = DBGrid1Exit
+      OnKeyDown = DBGrid1KeyDown
+      Columns = <
+        item
+          Expanded = False
+          FieldName = 'idProduto'
+          Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'DescricaoProduto'
+          Width = 500
+          Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'quantidade'
+          Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'valor_unitario'
+          Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'valor_total'
+          Visible = True
+        end>
+    end
+    object Panel3: TPanel
+      Left = 1
+      Top = 610
+      Width = 903
+      Height = 41
+      Align = alBottom
+      TabOrder = 3
+      object Label7: TLabel
+        Left = 656
+        Top = 6
+        Width = 107
+        Height = 25
+        Caption = 'Valor Total'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -20
+        Font.Name = 'Verdana'
+        Font.Style = []
+        ParentFont = False
+      end
+      object Edit4: TEdit
+        Left = 769
+        Top = 1
+        Width = 133
+        Height = 39
+        Align = alRight
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -16
+        Font.Name = 'Verdana'
+        Font.Style = []
+        ParentFont = False
+        TabOrder = 0
+        ExplicitHeight = 26
+      end
+    end
+  end
+  object DataSource1: TDataSource
+    DataSet = cdsItens
+    Left = 833
+    Top = 65
+  end
+  object cdsItens: TClientDataSet
+    Aggregates = <>
+    Params = <>
+    Left = 777
+    Top = 65
+    object cdsItensidItem: TIntegerField
+      FieldName = 'idItem'
+    end
+    object cdsItensidPedido: TIntegerField
+      FieldName = 'idPedido'
+    end
+    object cdsItensidProduto: TIntegerField
+      FieldName = 'idProduto'
+    end
+    object cdsItensDescricaoProduto: TStringField
+      FieldName = 'DescricaoProduto'
+      Size = 100
+    end
+    object cdsItensquantidade: TFloatField
+      FieldName = 'quantidade'
+    end
+    object cdsItensvalor_unitario: TFloatField
+      FieldName = 'valor_unitario'
+    end
+    object cdsItensvalor_total: TFloatField
+      FieldName = 'valor_total'
+    end
+  end
+end
